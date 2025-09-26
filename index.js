@@ -150,7 +150,7 @@ allRecent.forEach((e) => {
 })
 
 const observer = new IntersectionObserver((element) => {
-    console.log(element)
+
     element.forEach((e) => {
         if (e.isIntersecting) {
             e.target.style.opacity = "1"
@@ -162,7 +162,6 @@ const observer = new IntersectionObserver((element) => {
 
 const explainSection = document.querySelectorAll(".forklaring")
 explainSection.forEach(e => {
-    console.log(e)
     observer.observe(e)
 })
 
