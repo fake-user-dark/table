@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+nav a {
+    text-decoration: none;
+    position: relative;
+}
+
+
+
+nav a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: aliceblue;
+    bottom: 0;
+    height: 10%;
+    width: 0%;
+    transition: 300ms;
+
+}
+
+nav a:hover::before {
+    width: 100%;
+}
+
+table {
+
+    width: 80%;
+}
+tr {
+    border-bottom: 1px solid black;
+
+}
+th {
+    font-size: larger;
+    border-right: 1px solid rgba(0, 0, 0, 0.245) ;
+    
+}
+
+th:nth-child(1) {
+
+    width: 15%;
+}
+th:nth-child(2) {
+
+    width: 30%;
+}
+th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6) {
+    width: 10%;
+}
+td {
+    text-align: center;
+    font-size: larger;
+    border-right: 1px solid rgba(0, 0, 0, 0.245) ;
+}
+#LagNamn {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+#LagNamn h2{
+
+ width: 100%;
+ text-align: left;
+
+
+}
+
+#LagNamn img {
+    width: 20%;
+    padding: 2%;
+    
+}
+
+
+#Matchresultat h1 {
+    font-size: larger;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    padding: 3%;
+}
+
+#lag
+
+.spelatLagar {
+    border-bottom: 1px solid black;
+    font-family: "Boldonse", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
