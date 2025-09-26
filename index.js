@@ -192,5 +192,23 @@ sortedTeams.forEach((item, index)  => {
     tableElement.appendChild(newRow)
 })
 
+document.getElementById("Results").addEventListener("click", () => {
+    document.getElementById("Matchresultat").scrollIntoView({ 
+        behavior: "smooth", 
+        block: "start" 
+      });
+})
+document.getElementById("Table").addEventListener("click", () => {
+    document.querySelector("table").scrollIntoView({ 
+        behavior: "smooth", 
+        block: "end" 
+      });
+})
+document.getElementById("Rules").addEventListener("click", () => {
+    document.getElementById("explainSection").scrollIntoView({ 
+        behavior: "smooth", 
+        block: "start" 
+      });
+})
 
 

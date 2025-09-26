@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
-nav a {
+nav p {
     text-decoration: none;
     position: relative;
+    font-size: 15px;
+    cursor: pointer;
 }
-
+* {
+    scroll-behavior: smooth;
+}
 
 main {
     background: #8ECFF5;
@@ -26,7 +30,7 @@ section h1{
     font-weight: 400;
 }
 
-nav a::before {
+nav p::before {
     content: "";
     display: block;
     position: absolute;
@@ -40,7 +44,7 @@ nav a::before {
 
 
 
-nav a:hover::before {
+nav p:hover::before {
     width: 100%;
 }
 
@@ -118,7 +122,6 @@ td {
     padding-top: 2%;
     
 }
-
 
 #Matchresultat h1 {
     font-size: larger;
