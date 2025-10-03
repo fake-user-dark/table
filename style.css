@@ -10,11 +10,41 @@ nav p {
     scroll-behavior: smooth;
 }
 
+
 main {
     background: #8ECFF5;
     background: linear-gradient(170deg, rgba(142, 207, 245, 1) 34%, rgba(22, 36, 86, 1) 19%);
 }
 
+#inputChangeValue {
+    background-color: white;
+    outline: none;
+    margin: 3%;
+    padding: 1%;
+    width: 30%;
+    color: black;
+}
+
+.show {
+    opacity: 1;
+    color: white;
+    transition: 300ms;
+    border: red solid 2px;
+    padding: 1%;
+
+}
+.hide {
+    opacity: 0;
+    color: white;
+    height: 0px;
+    
+}
+
+#submitChanges {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
 
 header h1 {
     font-family: "Boldonse", system-ui;
@@ -50,7 +80,7 @@ nav p:hover::before {
 
 table {
     background-color: rgb(255, 255, 255);
-
+    cursor: pointer;
     width: 60%;
     margin: 2%;
 }

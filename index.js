@@ -186,6 +186,7 @@ sortedTeams.forEach((item, index)  => {
 
         } else {
             newTd.innerHTML = item[allSections[i]]
+            newTd.setAttribute("class", "values")
             newRow.appendChild(newTd)
         }
     }
@@ -211,4 +212,63 @@ document.getElementById("Rules").addEventListener("click", () => {
       });
 })
 
+const submitValues = () => {
+    const submitInputChangeValue = document.getElementById("submitChanges")
+
+}
+
+const checkDataSquare = () => {
+    tableElement.addEventListener("click", (e) => {
+        document.querySelectorAll("td").forEach((e) => {
+            e.style.backgroundColor = "white"
+        })
+        const adminInfoDiv = document.getElementById("adminInfo")
+        const currentTarget = e.target
+        const inputChangeValue = document.getElementById("inputChangeValue")
+        const submitInputChangeValue = document.getElementById("submitChanges")
+        if (adminInfoDiv.getAttribute("class") !== "hide") {
+            if (inputChangeValue.getAttribute("class") == "hide"&& currentTarget.getAttribute("class") === "values") {
+                inputChangeValue.classList.remove("hide")
+                inputChangeValue.classList.add("show")
+                submitInputChangeValue.classList.remove("hide")
+                submitInputChangeValue.classList.add("show")
+                submitInputChangeValue.addEventListener("click", () => {
+                    submitValues()
+                })
+                currentTarget.style.backgroundColor = "red"
+            } else {
+                inputChangeValue.classList.add("hide")
+                inputChangeValue.classList.remove("show")
+                submitInputChangeValue.classList.remove("show")
+                submitInputChangeValue.classList.add("hide")
+                currentTarget.style.backgroundColor = "white"
+    
+            }
+            console.log("works")
+        } 
+    
+    })
+}
+
+document.getElementById("editBtn").addEventListener("click", () => {
+    const adminInfoDiv = document.getElementById("adminInfo")
+    const inputChangeValue = document.getElementById("inputChangeValue")
+    const submitInputChangeValue = document.getElementById("submitChanges")
+    if (adminInfoDiv.getAttribute("class") === "hide") {
+        adminInfoDiv.classList.remove("hide")
+        adminInfoDiv.classList.add("show")
+        checkDataSquare()
+    } else {
+        adminInfoDiv.classList.add("hide")
+        adminInfoDiv.classList.remove("show")
+        inputChangeValue.classList.remove("show")
+        submitInputChangeValue.classList.remove("show")
+        inputChangeValue.classList.add("hide")
+        submitInputChangeValue.classList.add("hide")
+        document.querySelectorAll("td").forEach((e) => {
+            e.style.backgroundColor = "white"
+        })
+        inputChangeValue.value = ""
+    }
+})
 
