@@ -216,16 +216,21 @@ document.getElementById("Rules").addEventListener("click", () => {
 })
 
 const submitValues = (targetElement, valueChanged) => {
+    console.log(targetElement)
     targetElement.innerHTML = parseInt(valueChanged);
-    let changeIndex = targetElement.getAttribute("id").split("_"); // [teamName, index]
+    let changeIndex = targetElement.getAttribute("id").split("_"); // [teamName, value changing ]
+
 
     teams.forEach((e) => {
-        if (e.team === changeIndex[0]) {
-            e.points = parseInt(valueChanged); 
+        if (e.team === changeIndex[0]) {    
+            e[changeIndex[1]] = parseInt(valueChanged);
         }
+            
     });
 
     localStorage.setItem("LeagueStandings", JSON.stringify(teams))
+    console.log(JSON.parse(localStorage.getItem("LeagueStandings")))
+    console.log(changeIndex[1])
     window.location.href = "/"
 }
 
