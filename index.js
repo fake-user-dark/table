@@ -1,3 +1,27 @@
+const body = document.body;
+const main = document.querySelector('main');
+const table = document.querySelector('table');
+
+console.log(localStorage.getItem("dark"))
+
+if (localStorage.getItem("dark") !== "darkMode") {
+    main.style.background = "linear-gradient(170deg, rgba(142,207,245,1) 34%, rgba(22,36,86,1) 19%)";
+    table.style.backgroundColor = "white";
+    document.getElementById("explainSection").style.background =
+    "linear-gradient(340deg, rgba(142,207,245,1) 0%, rgba(22,36,86,1) 19%)";
+    document.querySelector("footer").style.backgroundColor = "rgba(22, 36, 86, 1)"
+    document.getElementById("Matchresultat").style.background = "rgba(22, 36, 86, 1)"
+    localStorage.setItem("dark", "whiteMode")
+} else {
+    body.classList.add("darkMode");
+    main.style.background = "black";
+    table.style.backgroundColor = "black";
+    document.getElementById("Matchresultat").style.backgroundColor = "transparent"
+      document.getElementById("explainSection").style.background = "transparent"
+      document.querySelector("footer").style.backgroundColor = "black"
+      localStorage.setItem("dark", "darkMode")
+}
+
 let teams = JSON.parse(localStorage.getItem("LeagueStandings")) || [
     {
         team: "Mancherster City",
@@ -215,17 +239,45 @@ document.getElementById("Rules").addEventListener("click", () => {
       });
 })
 
+document.querySelector("#DarkModeBtn").addEventListener("click", () => {
+
+  
+    if (body.classList.contains("darkMode")) {
+      body.classList.remove("darkMode");
+      main.style.background = "linear-gradient(170deg, rgba(142,207,245,1) 34%, rgba(22,36,86,1) 19%)";
+      table.style.backgroundColor = "white";
+      document.getElementById("explainSection").style.background =
+      "linear-gradient(340deg, rgba(142,207,245,1) 0%, rgba(22,36,86,1) 19%)";
+      document.querySelector("footer").style.backgroundColor = "rgba(22, 36, 86, 1)"
+      document.getElementById("Matchresultat").style.background = "rgba(22, 36, 86, 1)"
+      localStorage.setItem("dark", "whiteMode")
+    } else {
+      body.classList.add("darkMode");
+      main.style.background = "black";
+      table.style.backgroundColor = "black";
+      document.getElementById("Matchresultat").style.backgroundColor = "transparent"
+        document.getElementById("explainSection").style.background = "transparent"
+        document.querySelector("footer").style.backgroundColor = "black"
+        localStorage.setItem("dark", "darkMode")
+    }
+
+  });
+
 const submitValues = (targetElement, valueChanged) => {
     console.log(targetElement)
     targetElement.innerHTML = parseInt(valueChanged);
     let changeIndex = targetElement.getAttribute("id").split("_"); // [teamName, value changing ]
-
-
+    const TakeTeam = document.getElementById(`${changeIndex[0]}_points`)
+    console.log(TakeTeam)
     teams.forEach((e) => {
         if (e.team === changeIndex[0]) {    
             e[changeIndex[1]] = parseInt(valueChanged);
+    
+            const pointsWins = e.wins;
+            const pointsDraw = e.draw;
+            e.points = (pointsWins * 3) + pointsDraw;
+            TakeTeam.innerHTML = e.points;
         }
-            
     });
 
     localStorage.setItem("LeagueStandings", JSON.stringify(teams))
@@ -244,7 +296,12 @@ document.getElementById("editBtn").addEventListener("click", () => {
         adminInfoDiv.classList.add("show")
         tableElement.addEventListener("click", (e) => {
                     document.querySelectorAll("td").forEach((i) => {
-                        i.style.backgroundColor = "white"
+                        if (document.querySelector("body").getAttribute("class") === "darkMode") {
+                            i.style.backgroundColor = "black"
+                        } else {
+                            i.style.backgroundColor = "white"
+                        }
+
                     })
                     const adminInfoDiv = document.getElementById("adminInfo")
                     const currentTarget = e.target
