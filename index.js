@@ -1,12 +1,16 @@
+// Hämtar viktiga element från dokumentet
+
 const body = document.body;
 const main = document.querySelector('main');
 const table = document.querySelector('table');
 
 console.log(localStorage.getItem("dark"))
 
+// Kollar om mörkt läge är aktivt eller ej
+
 if (localStorage.getItem("dark") !== "darkMode") {
     main.style.background = "linear-gradient(170deg, rgba(142,207,245,1) 34%, rgba(22,36,86,1) 19%)";
-    table.style.backgroundColor = "white";
+    table.style.backgroundColor = "rgba(255, 255, 255, 0.686)";
     document.getElementById("explainSection").style.background =
     "linear-gradient(340deg, rgba(142,207,245,1) 0%, rgba(22,36,86,1) 19%)";
     document.querySelector("footer").style.backgroundColor = "rgba(22, 36, 86, 1)"
@@ -15,13 +19,26 @@ if (localStorage.getItem("dark") !== "darkMode") {
 } else {
     body.classList.add("darkMode");
     main.style.background = "black";
-    table.style.backgroundColor = "black";
+    table.style.backgroundColor = "rgba(255, 255, 255, 0.106)";
     document.getElementById("Matchresultat").style.backgroundColor = "transparent"
       document.getElementById("explainSection").style.background = "transparent"
       document.querySelector("footer").style.backgroundColor = "black"
       localStorage.setItem("dark", "darkMode")
 }
 
+
+// Hanterar hamburgarmenyn för navigation
+document.querySelector("#BurgerMenu").addEventListener("click", () => {
+
+    console.log("nice")
+    if (document.querySelector("nav").classList.contains("show")) {
+        document.querySelector("nav").classList.remove("show")
+    } else {
+        document.querySelector("nav").classList.add("show")
+    }
+})
+
+// Hämtar ligaställning från localStorage eller använder standarddata
 let teams = JSON.parse(localStorage.getItem("LeagueStandings")) || [
     {
         team: "Mancherster City",
@@ -142,17 +159,29 @@ let teams = JSON.parse(localStorage.getItem("LeagueStandings")) || [
         loses: 5,
         goalD: -2,
         points: 12
+    },,
+    {
+        team: "Arsenal",
+        img: "data:image/png;base64,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",
+        matches: 5,
+        wins: 5,
+        draw: 5,
+        loses: 5,
+        goalD: -2,
+        points: 0
     },
 
 ]
 
 
+// Sorterar lag baserat på poäng (högst först)
 let sortedTeams = [...teams].sort((a, b) => b.points - a.points);
-
 
 const allSections = ["team", "img", "matches", "wins", "draw", "loses", "goalD", "points"]
 const tableElement = document.querySelector("table")
 
+
+// Slumpmässiga resultat för "senaste matcher"
 const allRecent = document.querySelectorAll('.spelatLagar')
 allRecent.forEach((e) => {
 
@@ -175,6 +204,8 @@ allRecent.forEach((e) => {
     }
 })
 
+
+// Lägger till fade-effekt när element syns i viewport
 const observer = new IntersectionObserver((element) => {
 
     element.forEach((e) => {
@@ -191,7 +222,7 @@ explainSection.forEach(e => {
     observer.observe(e)
 })
 
-
+// Skapar tabell med alla lag och deras statistik
 sortedTeams.forEach((item, index)  => {
     const newRow = document.createElement("tr")
     const newTd = document.createElement("td")
@@ -239,13 +270,14 @@ document.getElementById("Rules").addEventListener("click", () => {
       });
 })
 
+// Hanterar knapp för mörkt/ljust läge
 document.querySelector("#DarkModeBtn").addEventListener("click", () => {
 
   
     if (body.classList.contains("darkMode")) {
       body.classList.remove("darkMode");
       main.style.background = "linear-gradient(170deg, rgba(142,207,245,1) 34%, rgba(22,36,86,1) 19%)";
-      table.style.backgroundColor = "white";
+      table.style.backgroundColor = "rgba(255, 255, 255, 0.686)";
       document.getElementById("explainSection").style.background =
       "linear-gradient(340deg, rgba(142,207,245,1) 0%, rgba(22,36,86,1) 19%)";
       document.querySelector("footer").style.backgroundColor = "rgba(22, 36, 86, 1)"
@@ -254,7 +286,7 @@ document.querySelector("#DarkModeBtn").addEventListener("click", () => {
     } else {
       body.classList.add("darkMode");
       main.style.background = "black";
-      table.style.backgroundColor = "black";
+      table.style.backgroundColor = "rgba(255, 255, 255, 0.106)";
       document.getElementById("Matchresultat").style.backgroundColor = "transparent"
         document.getElementById("explainSection").style.background = "transparent"
         document.querySelector("footer").style.backgroundColor = "black"
@@ -263,6 +295,7 @@ document.querySelector("#DarkModeBtn").addEventListener("click", () => {
 
   });
 
+// Funktion för att spara nya värden och uppdatera poäng
 const submitValues = (targetElement, valueChanged) => {
     console.log(targetElement)
     targetElement.innerHTML = parseInt(valueChanged);
@@ -286,6 +319,7 @@ const submitValues = (targetElement, valueChanged) => {
     window.location.href = "/"
 }
 
+// Admin-funktion för att redigera tabellvärden
 document.getElementById("editBtn").addEventListener("click", () => {
     const adminInfoDiv = document.getElementById("adminInfo")
     const inputChangeValue = document.getElementById("inputChangeValue")
@@ -297,9 +331,9 @@ document.getElementById("editBtn").addEventListener("click", () => {
         tableElement.addEventListener("click", (e) => {
                     document.querySelectorAll("td").forEach((i) => {
                         if (document.querySelector("body").getAttribute("class") === "darkMode") {
-                            i.style.backgroundColor = "black"
+                            i.style.backgroundColor = "rgba(255, 255, 255, 0.106)"
                         } else {
-                            i.style.backgroundColor = "white"
+                            i.style.backgroundColor = "rgba(255, 255, 255, 0.686)"
                         }
 
                     })
@@ -334,11 +368,18 @@ document.getElementById("editBtn").addEventListener("click", () => {
         submitInputChangeValue.classList.remove("show")
         inputChangeValue.classList.add("hide")
         submitInputChangeValue.classList.add("hide")
-        document.querySelectorAll("td").forEach((e) => {
-            e.style.backgroundColor = "white"
+        document.querySelectorAll("td").forEach((i) => {
+            if (document.querySelector("body").getAttribute("class") === "darkMode") {
+                i.style.backgroundColor = "rgba(255, 255, 255, 0.106)"
+            } else {
+                i.style.backgroundColor = "rgba(255, 255, 255, 0.686)"
+            }
+
         })
         inputChangeValue.value = ""
     }
+
+        // Bekräftar redigering
     submitInputChangeValue.addEventListener("click", () => {
 
         if (isNaN(parseInt(inputChangeValue.value))) {
