@@ -15,6 +15,8 @@ if (localStorage.getItem("dark") !== "darkMode") {
     "linear-gradient(340deg, rgba(142,207,245,1) 0%, rgba(22,36,86,1) 19%)";
     document.querySelector("footer").style.backgroundColor = "rgba(22, 36, 86, 1)"
     document.getElementById("Matchresultat").style.background = "rgba(22, 36, 86, 1)"
+    document.getElementById("sun").style.display = "block"
+    document.getElementById("moon").style.display = "none"
     localStorage.setItem("dark", "whiteMode")
 } else {
     body.classList.add("darkMode");
@@ -23,6 +25,8 @@ if (localStorage.getItem("dark") !== "darkMode") {
     document.getElementById("Matchresultat").style.backgroundColor = "transparent"
       document.getElementById("explainSection").style.background = "transparent"
       document.querySelector("footer").style.backgroundColor = "black"
+      document.getElementById("sun").style.display = "none"
+      document.getElementById("moon").style.display = "block"
       localStorage.setItem("dark", "darkMode")
 }
 
@@ -282,11 +286,15 @@ document.querySelector("#DarkModeBtn").addEventListener("click", () => {
       "linear-gradient(340deg, rgba(142,207,245,1) 0%, rgba(22,36,86,1) 19%)";
       document.querySelector("footer").style.backgroundColor = "rgba(22, 36, 86, 1)"
       document.getElementById("Matchresultat").style.background = "rgba(22, 36, 86, 1)"
+      document.getElementById("sun").style.display = "block"
+      document.getElementById("moon").style.display = "none"
       localStorage.setItem("dark", "whiteMode")
     } else {
       body.classList.add("darkMode");
       main.style.background = "black";
       table.style.backgroundColor = "rgba(255, 255, 255, 0.106)";
+      document.getElementById("sun").style.display = "none"
+      document.getElementById("moon").style.display = "block"
       document.getElementById("Matchresultat").style.backgroundColor = "transparent"
         document.getElementById("explainSection").style.background = "transparent"
         document.querySelector("footer").style.backgroundColor = "black"

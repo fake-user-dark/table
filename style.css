@@ -9,6 +9,12 @@ nav {
     height: 40%;
 }
 
+
+button svg:nth-child(1) {
+    display: none;
+
+}
+
 nav p {
     text-decoration: none;
     position: relative;
